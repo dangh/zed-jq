@@ -12,22 +12,9 @@
   "null"
 ] @constant
 
-(comment) @comment
-(number) @number
-(string) @string
-(variable) @variable
-
-; function definitions
-(funcdef (identifier) @function)
-(funcdefargs (identifier) @variable.parameter)
-
-; function calls
-((funcname) @function "(")
-("|" (query (funcname)) @function)
-
 ; operators
 [
-  "|" "." ";"
+  "|" "."
   "+" "-" "*" "/"
   "==" "!=" "<" ">" "<=" ">="
   "//" "%"
@@ -43,4 +30,24 @@
 [
   ","
   ":"
+  ";"
 ] @punctuation.delimiter
+
+(comment) @comment
+(number) @number
+(string) @string
+(string_interp "\\(" @string.escape ")" @string.escape) @embedded
+(variable) @variable
+
+(query term: (index "." (identifier) @property))
+(query term_with_object_access: (index "." (identifier) @property))
+(query object_param: (string) @property)
+(objectkey (identifier) @property)
+
+; function definitions
+(funcdef (identifier) @function)
+(funcdefargs (variable) @variable.parameter)
+
+; function calls
+(_ function: (funcname) @function "(")
+(_ chained_query: (query function: (funcname) @function))
