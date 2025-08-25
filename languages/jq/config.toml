@@ -1,0 +1,9 @@
+name = "jq"
+grammar = "jq"
+path_suffixes = ["jq"]
+brackets = [
+  { start = "[", end = "]", close = true, newline = false },
+  { start = "(", end = ")", close = true, newline = false },
+  { start = "{", end = "}", close = true, newline = false },
+  { start = "\"", end = "\"", close = true, newline = false }
+]
