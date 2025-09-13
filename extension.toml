@@ -9,3 +9,7 @@ repository = "https://github.com/dangh/zed-jq"
 [grammars.jq]
 repository = "https://github.com/flurie/tree-sitter-jq"
 commit = "c204e36d2c3c6fce1f57950b12cabcc24e5cc4d9"
+
+[language_servers.jq-lsp]
+name = "jq-lsp"
+languages= ["jq"]
